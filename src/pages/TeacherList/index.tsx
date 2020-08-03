@@ -57,7 +57,7 @@ export default function TeacherList() {
 
             <button type="button">
               <img src={whatsappIcon} alt="Whatsapp"/>
-              Entrar em contato
+              Contato
             </button>
           </footer>
         </article>
