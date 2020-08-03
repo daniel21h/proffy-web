@@ -2,6 +2,8 @@ import React from 'react'
 
 import PageHeader from '../../components/PageHeader'
 
+import whatsappIcon from '../../assets/images/icons/whatsapp.svg'
+
 import './styles.css'
 
 export default function TeacherList() {
@@ -25,6 +27,41 @@ export default function TeacherList() {
           </div>
         </form>
       </PageHeader>
+
+      <main>
+        <article className="teacher-item">
+          <header>
+            <img 
+              src="https://api.adorable.io/avatars/285/abott@adorable.png" 
+              alt="Avatar Adorable"
+            />
+
+            <div>
+              <strong>John Doe</strong>
+              <strong>Química</strong>
+            </div>
+          </header>
+
+          <p>
+            Entusiasta das melhores tecnologias de química de química avançada.
+            <br/><br/>
+            Apaixonado por explodir coisas em laboratório e por mudar a vida das
+            pessoas através de experiências.
+          </p>
+
+          <footer>
+            <p>
+              Preço/hora
+              <strong>R$70,00</strong>
+            </p>
+
+            <button type="button">
+              <img src={whatsappIcon} alt="Whatsapp"/>
+              Entrar em contato
+            </button>
+          </footer>
+        </article>
+      </main>
     </div>
   )
 }
