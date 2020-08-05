@@ -16,11 +16,6 @@ export default function TeacherForm() {
           <legend>Seus dados</legend>
 
           <div className="input-block">
-            <label htmlFor="name">Nome completo</label>
-            <input type="text" id="name"/>
-          </div>
-
-          <div className="input-block">
             <label htmlFor="avatar">Avatar</label>
             <input type="text" id="avatar"/>
           </div>
