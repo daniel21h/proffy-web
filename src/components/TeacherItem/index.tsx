@@ -15,7 +15,7 @@ function TeacherItem() {
 
         <div>
           <strong>John Doe</strong>
-          <strong>Química</strong>
+          <span>Química</span>
         </div>
       </header>
 
