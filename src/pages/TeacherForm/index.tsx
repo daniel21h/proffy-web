@@ -1,4 +1,6 @@
 import React, { useState, FormEvent } from 'react'
+import { useHistory } from 'react-router-dom'
+
 import PageHeader from '../../components/PageHeader'
 import Input from '../../components/Input'
 import Textarea from '../../components/Textarea'
@@ -22,6 +24,8 @@ export default function TeacherForm() {
   const [scheduleItems, setScheduleItems] = useState([
     { week_day: 0, from: '', to: '' },
   ])
+
+  const history = useHistory()
 
   function addNewScheduleItem() {
     setScheduleItems([
@@ -48,6 +52,32 @@ export default function TeacherForm() {
 
   function handleCreateClass(e: FormEvent) {
     e.preventDefault()
+
+    api.post('classes', {
+      name,
+      avatar,
+      whatsapp,
+      bio,
+      subject,
+      cost: Number(cost),
+      schedule: scheduleItems
+    }).then(() => {
+      alert('Cadastro realizado com sucesso!')
+
+      history.push('/')
+    }).catch(() => {
+      alert('Erro no cadastro')
+    })
+
+    console.log({
+      name,
+      avatar,
+      whatsapp,
+      bio,
+      subject,
+      cost,
+      scheduleItems
+    })
   }
 
   return (
@@ -128,7 +158,7 @@ export default function TeacherForm() {
             <legend>
               Horários disponíveis
 
-              <button type="submit" onClick={addNewScheduleItem}>
+              <button type="button" onClick={addNewScheduleItem}>
                 + Novo horário
               </button>
             </legend>
@@ -178,7 +208,7 @@ export default function TeacherForm() {
               Importante! <br/>
             </p>
 
-            <button type="button">Salvar cadastro</button>
+            <button type="submit">Salvar cadastro</button>
           </footer>
         </form>
      </main>
