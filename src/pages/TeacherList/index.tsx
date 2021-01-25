@@ -1,4 +1,4 @@
-import React, { useState, FormEvent } from 'react'
+import React, { useState, FormEvent, useMemo } from 'react'
 import TeacherItem, { Teacher } from '../../components/TeacherItem'
 import Input from '../../components/Input'
 import Select from '../../components/Select'
@@ -10,6 +10,7 @@ import './styles.css'
 
 export default function TeacherList() {
   const [teachers, setTeachers] = useState([])
+  const [allTeachers, setAllTeachers] = useState([])
 
   const [subject, setSubject] = useState('')
   const [week_day, setWeek_day] = useState('')
@@ -28,6 +29,17 @@ export default function TeacherList() {
 
     setTeachers(response.data)
   }
+
+  useMemo(() => {
+    async function searchAllTeachers() {
+      const response = await api.get('classes/all')
+
+      setAllTeachers(response.data)
+      console.log('Indo')
+    }
+
+    searchAllTeachers()
+  }, [])
 
   return (
     <div id="page-teacher-list" className="container">
@@ -87,6 +99,10 @@ export default function TeacherList() {
 
       <main>
         {teachers.map((teacher: Teacher) => {
+          return <TeacherItem key={teacher.id} teacher={teacher} />
+        })}
+
+        {allTeachers.map((teacher: Teacher) => {
           return <TeacherItem key={teacher.id} teacher={teacher} />
         })}
       </main>
